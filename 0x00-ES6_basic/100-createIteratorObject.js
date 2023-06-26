@@ -7,6 +7,25 @@ export default function createIteratorObject(report) {
   let employeesLength = employees.length;
   let currentEmployee = -1;
 
+  const handleEndOfRecord = () => {
+    if (currentEmployee === employeesLength || employeesLength === 0) {
+      currentDepartment += 1;
+      if (currentDepartment >= departmentLength) {
+        return 1;
+      }
+
+      employees = report.allEmployees[departments[currentDepartment]];
+      employeesLength = employees.length;
+      currentEmployee = 0;
+    }
+
+    if (currentEmployee === employeesLength || employeesLength === 0) {
+      return handleEndOfRecord();
+    }
+
+    return 0;
+  }
+
   return {
     [Symbol.iterator]() {
       return this;
@@ -14,15 +33,8 @@ export default function createIteratorObject(report) {
     next() {
       currentEmployee += 1;
 
-      if (currentEmployee === employeesLength || employeesLength === 0) {
-        currentDepartment += 1;
-        if (currentDepartment >= departmentLength) {
-          return { done: true };
-        }
-
-        employees = report.allEmployees[departments[currentDepartment]];
-        employeesLength = employees.length;
-        currentEmployee = 0;
+      if (handleEndOfRecord() == 1) {
+        return { done: true };
       }
 
       return {
