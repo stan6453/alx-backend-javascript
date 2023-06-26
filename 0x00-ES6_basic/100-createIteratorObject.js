@@ -3,6 +3,17 @@ export default function createIteratorObject(report) {
   const departmentLength = departments.length;
   let currentDepartment = 0;
 
+  if (departmentLength == 0){
+    return {
+      [Symbol.iterator]() {
+        return this;
+      },
+      next() {
+        return { done: true };
+      },
+    };
+  }
+
   let employees = report.allEmployees[departments[currentDepartment]];
   let employeesLength = employees.length;
   let currentEmployee = -1;
@@ -31,6 +42,7 @@ export default function createIteratorObject(report) {
       return this;
     },
     next() {
+
       currentEmployee += 1;
 
       if (handleEndOfRecord() == 1) {
