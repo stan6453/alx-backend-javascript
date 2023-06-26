@@ -3,7 +3,7 @@ export default function createIteratorObject(report) {
   const departmentLength = departments.length;
   let currentDepartment = 0;
 
-  if (departmentLength == 0){
+  if (departmentLength === 0) {
     return {
       [Symbol.iterator]() {
         return this;
@@ -35,17 +35,16 @@ export default function createIteratorObject(report) {
     }
 
     return 0;
-  }
+  };
 
   return {
     [Symbol.iterator]() {
       return this;
     },
     next() {
-
       currentEmployee += 1;
 
-      if (handleEndOfRecord() == 1) {
+      if (handleEndOfRecord() === 1) {
         return { done: true };
       }
 
