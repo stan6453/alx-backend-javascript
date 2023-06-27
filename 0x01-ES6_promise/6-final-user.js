@@ -9,7 +9,10 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
     .then((result) => {
       const newResult = [];
       for (const obj of result) {
-        newResult.push(obj.value === undefined ? obj.reason : obj.value);
+        newResult.push({
+          status: obj.status,
+          value: obj.value === undefined ? obj.reason : obj.value,
+        });
       }
       return newResult;
     });
