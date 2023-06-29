@@ -18,11 +18,19 @@ function verifyDataType(data, datatype, errMessage) {
   }
 }
 
-export default class HolbertonCourse {
-  constructor(name, length, students) {
+export default class Currency {
+  constructor(code, name) {
+    this.code = code;
     this.name = name;
-    this.length = length;
-    this.students = students;
+  }
+
+  get code() {
+    return this._code;
+  }
+
+  set code(code) {
+    verifyDataType(code, 'string', 'Code must be a string');
+    this._code = code;
   }
 
   get name() {
@@ -34,21 +42,7 @@ export default class HolbertonCourse {
     this._name = name;
   }
 
-  get length() {
-    return this._length;
-  }
-
-  set length(length) {
-    verifyDataType(length, 'number', 'Length must be a number');
-    this._length = length;
-  }
-
-  get students() {
-    return this._students;
-  }
-
-  set students(students) {
-    verifyDataType(students, 'array', 'Students must be an array');
-    this._students = students;
+  displayFullCurrency() {
+    return `${this.name} (${this.code})`;
   }
 }
