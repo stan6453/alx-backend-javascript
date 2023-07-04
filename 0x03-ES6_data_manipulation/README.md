@@ -1,1 +1,1 @@
-0x01. ES6 Promises
+0x03. ES6 data manipulation
