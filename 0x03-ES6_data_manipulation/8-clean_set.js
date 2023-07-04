@@ -1,4 +1,10 @@
 export default function cleanSet(set, startString) {
   if (!(set instanceof Set) || typeof startString !== 'string') return '';
-  return ([...set].reduce((sum, val) => sum + (val.startsWith(startString) ? `-${val.slice(startString.length)}` : ''), '')).slice(1);
+  for (const item of set) {
+    if (item.startsWith(startString)) {
+      list.push(item.slice(startString.length));
+    }
+  }
+
+  return list.join('-');
 }
