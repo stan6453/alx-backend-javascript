@@ -1,3 +1,12 @@
 export default function cleanSet(set, startString) {
-  return ([...set].reduce((sum, val) => sum + (val.startsWith(startString) && startString !== '' ? `-${val.slice(startString.length)}` : ''), '')).slice(1);
+  const array = new Array();
+  if (startString === '') {
+    return '';
+  }
+  for (const member of set) {
+    member.startsWith(startString)
+      ? array.push(member.replace(startString, ''))
+      : '';
+  }
+  return array.join('-');
 }
