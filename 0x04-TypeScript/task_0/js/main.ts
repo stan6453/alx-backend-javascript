@@ -5,6 +5,7 @@ interface Student {
   location: string
 }
 
+//OBJECT AND INTERFACES
 const student1: Student = {
   firstName: 'Remy',
   lastName: 'Eze',
@@ -19,6 +20,7 @@ const student2: Student = {
   location: 'anambra'
 };
 
+//ARRAYS and INTERFACES
 const studentsList: Student[] = [student1, student2]
 
 console.table(studentsList.map((elem)=>({firstName:elem.firstName, location:elem.location})))
