@@ -1,33 +1,35 @@
-const fs = require('fs')
+const fs = require('fs');
 
-function countStudents(file_path) {
+function countStudents(filePath) {
   return new Promise((resolve, reject) => {
-    fs.readFile(file_path, 'utf-8', (err, data) => {
+    fs.readFile(filePath, 'utf-8', (err, data) => {
       if (err) {
-        return reject(new Error('Cannot load the database'))
+        return reject(new Error('Cannot load the database'));
       }
-      const study = {}
-      data = data.split('\n');
-      data = data.slice(1);
-      data = data.filter(arr => arr.length > 1);
+      const study = {};
+      let tempData = data.split('\n');
+      tempData = tempData.slice(1);
+      tempData = tempData.filter((arr) => arr.length > 1);
 
-      console.log(`Number of students: ${data.length}`);
-      for (let i = 0; i < data.length; i++) {
-        row = data[i];
-        column = row.split(',')
+      console.log(`Number of students: ${tempData.length}`);
+      for (let i = 0; i < tempData.length; i += 1) {
+        const row = tempData[i];
+        const column = row.split(',');
         if (!study[column[3]]) {
-          study[column[3]] = [column[0]]
+          study[column[3]] = [column[0]];
         } else {
-          study[column[3]].push(column[0])
+          study[column[3]].push(column[0]);
         }
       }
-      for (course in study) {
-        console.log(`Number of students in CS: ${study[course].length}. List: ${study[course].join(', ')}`);
+      for (const course in study) {
+        if (course) {
+          console.log(`Number of students in ${course}: ${study[course].length}. List: ${study[course].join(', ')}`);
+        }
       }
       resolve('done');
-    })
-  })
+      return undefined;
+    });
+  });
 }
 
-
-module.exports = countStudents
+module.exports = countStudents;
