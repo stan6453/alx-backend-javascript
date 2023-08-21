@@ -37,6 +37,8 @@ const app = http.createServer((req, res) => {
           response += (`Number of students in ${course}: ${study[course].length}. List: ${study[course].join(', ')}\n`);
         }
       }
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/plain');
       res.end(response.slice(0, -1));
       return undefined;
     });
