@@ -1,7 +1,22 @@
-console.log('Welcome to Holberton School, what is your name?');
-let user_name = '';
-process.stdin.on('data', data => {
-  user_name = data.toString().slice(0, -1);
-  console.log('Your name is: ' + user_name);
-  process.exit();
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
 });
+
+console.log('Welcome to Holberton School, what is your name?');
+
+rl.on('line', (input) => {
+  if (input === 'exit') {
+    console.log('This important software is now closing');
+    rl.close();
+  } else {
+    console.log(`Your name is: ${input}`);
+  }
+});
+
+rl.on('close', () => {
+  console.log('This important software is now closing');
+});
+
