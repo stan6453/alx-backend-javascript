@@ -53,8 +53,8 @@ const app = http.createServer((req, res) => {
       }).catch(() => {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/plain');
-        res.end('Cannot load the database');
-      });;
+        res.end('file not found');
+      });
   }
 });
 
