@@ -52,7 +52,7 @@ app.get('/students', (req, res) => {
       res.statusCode = 404;
       res.setHeader('Content-Type', 'text/plain');
       res.write('This is the list of our students');
-      res.end('Cannot load the database');
+      res.end();
     });
 });
 
