@@ -17,7 +17,7 @@ function countStudents(filePath) {
       tempData = tempData.slice(1);
       tempData = tempData.filter((arr) => arr.length > 1);
 
-      response += (`Number of students: ${tempData.length}\n`);
+      response += `Number of students: ${tempData.length}\n`;
       for (let i = 0; i < tempData.length; i += 1) {
         const row = tempData[i];
         const column = row.split(',');
@@ -29,7 +29,7 @@ function countStudents(filePath) {
       }
       for (const course in study) {
         if (course) {
-          response += (`Number of students in ${course}: ${study[course].length}. List: ${study[course].join(', ')}\n`);
+          response += `Number of students in ${course}: ${study[course].length}. List: ${study[course].join(', ')}\n`;
         }
       }
       return resolve(response.slice(0, -1));
