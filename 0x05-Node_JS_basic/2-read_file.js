@@ -26,7 +26,7 @@ function countStudents(filePath) {
   }
   for (const course in study) {
     if (course) {
-      console.log(`Number of students in CS: ${study[course].length}. List: ${study[course].join(', ')}`);
+      console.log(`Number of students in ${course}: ${study[course].length}. List: ${study[course].join(', ')}`);
     }
   }
 }
