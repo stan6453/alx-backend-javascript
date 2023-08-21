@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const hostname = '127.0.0.1';
 const port = 1245;
+databaseName = process.argv[2]
 
 const app = http.createServer((req, res) => {
   if (req.url === '/') {
@@ -12,7 +13,7 @@ const app = http.createServer((req, res) => {
   }
 
   if (req.url === '/students') {
-    fs.readFile('database.csv', 'utf-8', (err, data) => {
+    fs.readFile(databaseName, 'utf-8', (err, data) => {
       if (err) {
         console.log(err);
       }
