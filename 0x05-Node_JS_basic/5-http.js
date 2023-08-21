@@ -32,8 +32,7 @@ function countStudents(filePath) {
           response += (`Number of students in ${course}: ${study[course].length}. List: ${study[course].join(', ')}\n`);
         }
       }
-      resolve(response.slice(0, -1));
-      return undefined;
+      return resolve(response.slice(0, -1));
     });
   });
 }
@@ -51,7 +50,11 @@ const app = http.createServer((req, res) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
         res.end(result);
-      });
+      }).catch(() => {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Cannot load the database');
+      });;
   }
 });
 
