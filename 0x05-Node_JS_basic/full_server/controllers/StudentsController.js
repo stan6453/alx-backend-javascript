@@ -6,15 +6,7 @@ export default class StudentsController {
     return readDatabase('./database.csv')
       .then((courses) => {
         const courseNames = Object.keys(courses);
-        courseNames.sort((a, b) => {
-          if (a[0].toLowerCase() < b[0].toLowerCase()) {
-            return -1;
-          }
-          if (a[0].toLowerCase() > b[0].toLowerCase()) {
-            return 1;
-          }
-          return 0;
-        });
+        courseNames.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
         for (const course of courseNames) {
           result += `Number of students in ${course}: ${courses[course].length}. List: ${courses[course].join(', ')}\n`;
         }
@@ -31,6 +23,7 @@ export default class StudentsController {
   static getAllStudentsByMajor(request, response) {
     const { major } = request.params;
     if (!['CS', 'SWE'].includes(major)) {
+      response.setHeader('Content-Type', 'text/plain');
       return response.status(500).send('Major parameter must be CS or SWE');
     }
     return readDatabase('./database.csv')
