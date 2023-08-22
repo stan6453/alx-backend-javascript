@@ -1,6 +1,5 @@
 import readDatabase from '../utils';
 
-
 export default class StudentsController {
   static getAllStudents(request, response) {
     const databaseName = process.argv[2];
