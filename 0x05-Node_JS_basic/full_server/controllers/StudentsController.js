@@ -4,9 +4,9 @@ const databaseName = process.argv[2];
 
 export default class StudentsController {
   static getAllStudents(request, response) {
-    let result = 'This is the list of our students\n';
     return readDatabase(databaseName)
       .then((courses) => {
+        let result = 'This is the list of our students\n';
         const courseNames = Object.keys(courses);
         courseNames.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
         for (const course of courseNames) {
