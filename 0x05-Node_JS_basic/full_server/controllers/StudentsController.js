@@ -1,9 +1,11 @@
 import readDatabase from '../utils';
 
+const databaseName = process.argv[2];
+
 export default class StudentsController {
   static getAllStudents(request, response) {
     let result = 'This is the list of our students\n';
-    return readDatabase('./database.csv')
+    return readDatabase(databaseName)
       .then((courses) => {
         const courseNames = Object.keys(courses);
         courseNames.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
@@ -26,7 +28,7 @@ export default class StudentsController {
       response.setHeader('Content-Type', 'text/plain');
       return response.status(500).send('Major parameter must be CS or SWE');
     }
-    return readDatabase('./database.csv')
+    return readDatabase(databaseName)
       .then((courses) => {
         response.statusCode = 200;
         response.setHeader('Content-Type', 'text/plain');
