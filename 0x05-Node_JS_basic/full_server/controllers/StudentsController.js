@@ -1,9 +1,9 @@
 import readDatabase from '../utils';
 
-const databaseName = process.argv[2];
 
 export default class StudentsController {
   static getAllStudents(request, response) {
+    const databaseName = process.argv[2];
     return readDatabase(databaseName)
       .then((courses) => {
         let result = 'This is the list of our students\n';
@@ -23,6 +23,8 @@ export default class StudentsController {
   }
 
   static getAllStudentsByMajor(request, response) {
+    const databaseName = process.argv[2];
+
     const { major } = request.params;
     if (!['CS', 'SWE'].includes(major)) {
       response.setHeader('Content-Type', 'text/plain');
