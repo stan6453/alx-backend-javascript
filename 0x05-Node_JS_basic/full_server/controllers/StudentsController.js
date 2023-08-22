@@ -6,7 +6,15 @@ export default class StudentsController {
     return readDatabase('./database.csv')
       .then((courses) => {
         const courseNames = Object.keys(courses);
-        courseNames.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+        courseNames.sort((a, b) => {
+          if (a[0].toLowerCase() < b[0].toLowerCase()) {
+            return -1;
+          }
+          if (a[0].toLowerCase() > b[0].toLowerCase()) {
+            return 1;
+          }
+          return 0;
+        });
         for (const course of courseNames) {
           result += `Number of students in ${course}: ${courses[course].length}. List: ${courses[course].join(', ')}\n`;
         }
