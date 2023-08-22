@@ -1,11 +1,11 @@
-import attach_routes from './routes/index'
+import attachRoutes from './routes/index';
 
 const express = require('express');
 
 const app = express();
 const port = 1245;
 
-attach_routes(app);
+attachRoutes(app);
 
 app.listen(port, () => {
   console.log(`Listening port on ${port}`);
