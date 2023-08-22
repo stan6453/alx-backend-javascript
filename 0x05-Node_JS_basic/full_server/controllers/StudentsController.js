@@ -4,6 +4,7 @@ export default class StudentsController {
   static getAllStudents(request, response) {
     let result = 'This is the list of our students\n';
     response.statusCode = 200;
+    response.setHeader('Content-Type', 'text/plain');
     return readDatabase('./database.csv')
       .then((courses) => {
         const courseNames = Object.keys(courses);
@@ -15,7 +16,6 @@ export default class StudentsController {
       }).catch(() => {
         response.statusCode = 500;
         response.setHeader('Content-Type', 'text/plain');
-        response.write('This is the list of our students\n');
         response.end('Cannot load the database');
       });
   }
@@ -27,11 +27,12 @@ export default class StudentsController {
     }
     return readDatabase('./database.csv')
       .then((courses) => {
+        response.statusCode = 500;
+        response.setHeader('Content-Type', 'text/plain');
         response.send(`List: ${courses[major].join(', ')}`);
       }).catch(() => {
         response.statusCode = 500;
         response.setHeader('Content-Type', 'text/plain');
-        response.write('This is the list of our students\n');
         response.end('Cannot load the database');
       });
   }
