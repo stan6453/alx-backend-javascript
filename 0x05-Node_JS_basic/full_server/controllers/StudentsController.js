@@ -15,7 +15,7 @@ export default class StudentsController {
       }).catch(() => {
         response.statusCode = 500;
         response.setHeader('Content-Type', 'text/plain');
-        // response.write('This is the list of our students\n');
+        response.write('This is the list of our students\n');
         response.end('Cannot load the database');
       });
   }
@@ -31,7 +31,7 @@ export default class StudentsController {
       }).catch(() => {
         response.statusCode = 500;
         response.setHeader('Content-Type', 'text/plain');
-        // response.write('This is the list of our students\n');
+        response.write('This is the list of our students\n');
         response.end('Cannot load the database');
       });
   }
