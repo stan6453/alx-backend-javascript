@@ -1,5 +1,5 @@
 let expect = require('chai').expect;
-let calculateNumber = require('./1-calcul');
+let calculateNumber = require('./2-calcul');
 
 describe('calculateNumber', function () {
   describe('when type is SUM', function () {
